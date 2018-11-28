@@ -9,18 +9,47 @@ public class MainClass {
     int[] whiteLIst = intsFromFile(args[0]);
     Arrays.sort(whiteLIst);
     int[] blackLIst = intsFromFile(args[1]);
-    for (int i = 0; i < blackLIst.length; i++) {
-      boolean result = true;
-      for (int j = 0; j < whiteLIst.length; j++) {
-        if(blackLIst[i] == whiteLIst[j]) {
-          result = false;
-        }
-      }
-      if(result) {
-        System.out.println(blackLIst[i]);
+    for (int blackItem : blackLIst) {
+      int index = binarySearch(whiteLIst, blackItem);
+      if(index == -1) {
+        System.out.println(blackItem);
       }
     }
     System.out.println("Complete");
+  }
+
+  private static void binarySearchDummy(int[] whiteLIst, int key) {
+    boolean result = true;
+    for (int whiteItem : whiteLIst) {
+      if (key == whiteItem) {
+        result = false;
+      }
+    }
+    if (result) {
+      System.out.println(key);
+    }
+  }
+
+  private static int binarySearch(int[] whiteLIst, int key) {
+    int low = 0;
+    int high = whiteLIst.length - 1;
+    while (true) {
+      int middle = (high - low) / 2 + low;
+      if(whiteLIst[low] == key) {
+        return low;
+      }
+      if(whiteLIst[high] == key) {
+        return high;
+      }
+      if(high - low <= 1) {
+        return -1;
+      }
+      if(whiteLIst[middle] > key) {
+        high = middle;
+      } else {
+        low = middle;
+      }
+    }
   }
 
   private static int[] intsFromFile(String filename) {
