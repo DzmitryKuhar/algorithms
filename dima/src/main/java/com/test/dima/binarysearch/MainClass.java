@@ -1,4 +1,4 @@
-package com.test.java.dima;
+package com.test.dima.binarysearch;
 
 import java.util.Arrays;
 import java.util.Scanner;

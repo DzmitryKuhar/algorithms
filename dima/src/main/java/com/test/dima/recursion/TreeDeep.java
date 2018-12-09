@@ -1,4 +1,4 @@
-package com.test.java.dima.recursion;
+package com.test.dima.recursion;
 
 import java.util.stream.Stream;
 
