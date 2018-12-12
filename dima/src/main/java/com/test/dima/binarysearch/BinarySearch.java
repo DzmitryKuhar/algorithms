@@ -3,7 +3,7 @@ package com.test.dima.binarysearch;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class MainClass {
+public class BinarySearch {
 
   public static void main(String[] args) {
     int[] whiteLIst = intsFromFile(args[0]);
@@ -54,7 +54,7 @@ public class MainClass {
 
   private static int[] intsFromFile(String filename) {
     try (
-      Scanner sc = new Scanner(MainClass.class.getClassLoader().getResourceAsStream(filename),
+      Scanner sc = new Scanner(BinarySearch.class.getClassLoader().getResourceAsStream(filename),
         "UTF-8").useDelimiter("\\A")) {
       String file = sc.next();
       String[] strings = file.split("\\n");

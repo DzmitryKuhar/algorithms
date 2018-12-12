@@ -1,41 +1,41 @@
-package com.test.dima.stack;
+package com.test.dima.queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Stack<T> implements Iterable<T> {
+public class Queue<T> implements Iterable<T>  {
 
-    private Node<T> node;
+    private Node<T> first;
+    private Node<T> last;
 
     private int size = 0;
 
-    public void push(T element) {
-        Node<T> newNode = new Node<>(element);
-        if (node != null) {
-            newNode.setNext(node);
+    public void enqueue(T element) {
+        Node<T> oldLast = last;
+        last = new Node<>(element);
+        if(first == null) {
+            first = last;
+        } else {
+            oldLast.setNext(last);
         }
-        node = newNode;
         size++;
     }
 
-    public T pop() {
-        if (size > 0) {
-            size--;
-            Node<T> oldNode;
-            if (node.getNext() != null) {
-                oldNode = node;
-                node = node.getNext();
-            } else {
-                oldNode = node;
-                node = null;
+    public T dequeue() {
+        if(first != null) {
+            T element = first.getValue();
+            first = first.getNext();
+            if(first == null) {
+                last = null;
             }
-            return oldNode.getValue();
+            size--;
+            return element;
         }
         return null;
     }
 
     public boolean isEmpty() {
-        return node == null;
+        return first == null;
     }
 
     public int size() {
@@ -46,7 +46,7 @@ public class Stack<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
 
-            private Node<T> current = node;
+            private Node<T> current = first;
             private boolean removed = false;
 
             @Override

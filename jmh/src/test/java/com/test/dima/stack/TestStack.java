@@ -26,7 +26,7 @@ public class TestStack {
   @Measurement(iterations = 10, time = 1, timeUnit = SECONDS)
   @Fork(value = 1, warmups = 1)
   @BenchmarkMode({Mode.AverageTime})
-  @Timeout(time = 10)
+  @Timeout(time = 10, timeUnit = SECONDS)
   @OutputTimeUnit(MICROSECONDS)
   public void test() {
     Stack<Integer> values = new Stack<>();

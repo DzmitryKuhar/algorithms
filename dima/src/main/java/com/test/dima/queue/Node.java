@@ -1,4 +1,4 @@
-package com.test.dima.stack;
+package com.test.dima.queue;
 
 import lombok.Getter;
 import lombok.Setter;
